@@ -28,7 +28,7 @@ class HomeHeader extends StatelessWidget {
     return Row(
       children: [
         _SearchBar(context),
-        _Cart(context),
+        _SearchBar(context),
       ],
     );
   }
@@ -45,6 +45,12 @@ class HomeHeader extends StatelessWidget {
           child: const Icon(Icons.search)),
     );
   }
+  // Widget _Search(BuildContext context) {
+  //   return Scaffold(
+     
+  //   );
+    
+  // }
 
   Widget _Cart(BuildContext context) {
     return GestureDetector(
@@ -59,9 +65,19 @@ class HomeHeader extends StatelessWidget {
     );
   }
 }
-
-
-
+  // TextFormField conformTextFormField(context) {
+  //   return TextFormField(
+  //     // controller: conform,
+  //     // obscureText: !_passwordVisible,
+  //     //keyboardType: TextInputType.number,
+  //     decoration: const InputDecoration(
+  //         border: const OutlineInputBorder(),
+  //         hintText: "Re-enter your password",
+  //         floatingLabelBehavior: FloatingLabelBehavior.always,
+          
+  //     ),
+  //   );
+  // }
 // class MySearchDelegate extends SearchDelegate {
 //   Products? product;
 //   @override

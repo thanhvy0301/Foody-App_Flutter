@@ -4,10 +4,11 @@ import "package:flutter/cupertino.dart";
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:test_app/signIn/components/signIn_form.dart';
+import 'package:test_app/signIn/signInPage.dart';
 
 class SignUpForm extends StatefulWidget{
   @override
-    _SignUpFormState createState() => _SignUpFormState();
+    State <SignUpForm> createState() => _SignUpFormState();
 
 }
 class _SignUpFormState extends State<SignUpForm> {
@@ -17,7 +18,12 @@ class _SignUpFormState extends State<SignUpForm> {
   
   final _formKey = GlobalKey<FormState>();
   final _passKey = GlobalKey<FormState>();
-
+  late bool _passwordVisible;
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
+  // passVisibale
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -47,7 +53,8 @@ class _SignUpFormState extends State<SignUpForm> {
                     email: email.text, 
                     password: password.text).then((value){
                       print("Create new account");
-                      Navigator.push(context, MaterialPageRoute(builder:(context) => const signInForm()));
+                      //Navigator.push(context, MaterialPageRoute(builder:(context) => const signInForm()));
+                      Navigator.pushNamed(context, signInPage.routeName);
                     }).onError((error, stackTrace) {
                       print("Error ${error.toString()}");
                     });
@@ -60,7 +67,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 // side: RoundedRectangleBorder(
                 //     borderRadius: BorderRadius.circular(10)),
                 // color: Colors.blueAccent,
-                child: const Text("Continue", style: TextStyle(fontSize: 18,
+                child: const Text("Sign Up", style: TextStyle(fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),),
               ),
@@ -136,13 +143,23 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       key: _passKey,
       controller: password,
-      keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
-          border: OutlineInputBorder(),
+      obscureText: !_passwordVisible,
+      //keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+          border: const OutlineInputBorder(),
           hintText: "Enter your password",
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(Icons.lock_outline)
-      ),
+          //floatingLabelBehavior: FloatingLabelBehavior.always,
+          // 
+          suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _passwordVisible = !_passwordVisible;
+            });
+          },
+          child:
+           Icon(_passwordVisible ? Icons.visibility : Icons.visibility_off),
+        ),
+      )
       // validator: (passwordKey){
       //   return Utilities.validatePassword(passwordKey);
       // },
@@ -152,13 +169,21 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField conformTextFormField() {
     return TextFormField(
       controller: conform,
-      obscureText: true,
-      keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
-          border: OutlineInputBorder(),
+      obscureText: !_passwordVisible,
+      //keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+          border: const OutlineInputBorder(),
           hintText: "Re-enter your password",
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(Icons.lock_outline)
+          suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _passwordVisible = !_passwordVisible;
+            });
+          },
+          child:
+           Icon(_passwordVisible ? Icons.visibility : Icons.visibility_off),
+        ),
       ),
       // validator: (passwordKey){
       //   var pass = _passKey.currentState.value;

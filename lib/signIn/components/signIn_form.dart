@@ -1,4 +1,4 @@
- //import 'dart:html';
+//import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,181 +15,219 @@ class signInForm extends StatefulWidget {
   const signInForm({super.key});
 
   @override
-  State <signInForm> createState() =>  signInFormState();
+  State<signInForm> createState() => signInFormState();
 }
 
-class  signInFormState extends State <signInForm> {
+class signInFormState extends State<signInForm> {
   // void SignIn() async{
   //   try{
   //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: username.text, 
+  //       email: username.text,
   //       password: password.text
-  //       ); 
+  //       );
   //       Navigator.pop(context);
-  //     }              
+  //     }
   //     on FirebaseAuthException catch (e){
   //       Navigator.pop(context);
   //       if(e.code =='user-not-found'){
   //         wrongEmailMessage();
   //       } else if(e.code == 'wrong password');
-  //     }  
+  //     }
   //     //Navigator.pop(context);
   //   }
 
-  static Future<User?> signInWithEmailAndPassword({required String username, required String password, required BuildContext context})async{
+  static Future<User?> signInWithEmailAndPassword(
+      {required String username,
+      required String password,
+      required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: username, 
-        password: password);
-      user = userCredential.user; 
+          email: username, password: password);
+      user = userCredential.user;
     } on FirebaseAuthException catch (e) {
-      if(e.code =="user not found")
-      {
+      if (e.code == "user not found") {
         print("Not found");
-      }    
+      }
     }
     return user;
   }
-  Future<FirebaseApp>_initalizerFirebase()async{
+
+  Future<FirebaseApp> _initalizerFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;
   }
+
   final _formKey = GlobalKey<FormState>();
-  bool _value= false;
+  bool _value = false;
   var sharedPreferences;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  late FToast fToast ;
+  late FToast fToast;
 
   @override
-  void initState(){
+  void initState() {
     fToast = FToast();
     fToast.init(context);
     _getData();
     super.initState();
   }
 
-  _getData() async{
+  _getData() async {
     //sharedPreferences = await SharedPreferences.getInstance();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString('username')!.isNotEmpty){
-      username.text = sharedPreferences.getString('username')?? '';
-      password.text = sharedPreferences.getString('password')?? '';
-      _value = sharedPreferences.getBool('check')??false;
+    if (sharedPreferences.getString('username')!.isNotEmpty) {
+      username.text = sharedPreferences.getString('username') ?? '';
+      password.text = sharedPreferences.getString('password') ?? '';
+      _value = sharedPreferences.getBool('check') ?? false;
     }
   }
+
   @override
-   Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     User? user;
     return Form(
       key: _formKey,
       child: Container(
         width: MediaQuery.of(context).size.width,
-
         child: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(8.0),
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text("Food Now",
-                  style: TextStyle(fontSize: 32, color: Colors.blueAccent, fontWeight:FontWeight.bold ),),
-                  Text(
-                    "Sign in with your email and password \n or continue with social media",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color:Colors.blueAccent),
-                  )
-                ],
-              )),
-            Padding (
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Food Now",
+                      style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Sign in with your email and password \n or continue with social media",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.blueAccent),
+                    )
+                  ],
+                )),
+            Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:[
+                      children: [
                         TextFormField(
-                            validator: (value){
-                              return Utilities.validatePassword(value!);
-                            },
-                            onSaved:(_value){
-                              setState((){
-                                username.text=_value!;
+                          validator: (value) {
+                            return Utilities.validatePassword(value!);
+                          },
+                          onSaved: (_value) {
+                            setState(() {
+                              username.text = _value!;
+                            });
+                          },
+                          controller: username,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Username",
+                              prefixIcon: Icon(Icons.mail_outline)),
+                        ),
+                        const SizedBox(height: 5),
+                        TextFormField(
+                          controller: password,
+                          validator: (value) {
+                            return Utilities.validatePassword(value!);
+                          },
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Password",
+                              prefixIcon: Icon(Icons.lock_outline_rounded)),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "Remember me",
+                              style: TextStyle(color: Colors.blueAccent),
+                            ),
+                            Checkbox(
+                                value: _value,
+                                onChanged: (value) {
+                                  _value = !_value;
+                                  setState(() {});
+                                })
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              print(user);
+                              if (user != null) {
+                                Navigator.of(context).toString();
+                              }
+                              FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: username.text,
+                                      password: password.text)
+                                  .then((value) {
+                                Navigator.pushNamed(
+                                    context, HomePage.routeName);
+                              }).onError((error, stackTrace) {
+                                //print("Error ${error.toString()}");
+                                Fluttertoast.showToast(
+                                  msg: 'Incorrect',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Color.fromARGB(188, 138, 138, 138),
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
+                                
                               });
+                              if (_value) {
+                                sharedPreferences =
+                                    await SharedPreferences.getInstance();
+                                sharedPreferences.setString(
+                                    "username", username.text);
+                                sharedPreferences.setString(
+                                    "password", password.text);
+                                sharedPreferences.setBool("check", _value);
+                              } else {
+                                sharedPreferences.remove('check');
+                              }
+
+                              //Navigator.pushNamed(context, HomePage.routeName);
                             },
-                            controller:username,
-                            decoration:const InputDecoration(
-                                border:OutlineInputBorder(),
-                                hintText:"Username",
-                                prefixIcon:Icon(Icons.mail_outline)
-                            ),),
-                            const SizedBox(height:5),
-                            TextFormField(
-                              controller:password,
-                              validator: (value) {
-                                return Utilities.validatePassword(value!);
-                              },
-                              obscureText: true,
-                              decoration:const InputDecoration(
-                                  border:OutlineInputBorder(),
-                                  hintText:"Password",
-                                  prefixIcon: Icon(Icons.lock_outline_rounded)
-                              ),),                              
-                            const SizedBox(height:5,),
-                            Row(
-                              children: [
-                                Text("Remember me", style: TextStyle(color: Colors.blueAccent),),
-                                Checkbox(
-                                  value: _value, 
-                                  onChanged: (value){
-                                    _value  = !_value;
-                                    setState(() {
-                                      
-                                    });
-                                  })
-                              ],
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor: Colors.blueAccent,
                             ),
-                            const SizedBox(height:5,),
-                            SizedBox(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                onPressed: () async{                                  
-                                  print(user);
-                                  if(user != null){
-                                    Navigator.of(context).toString();
-                                  }
-                                  FirebaseAuth.instance.signInWithEmailAndPassword(
-                                    email: username.text, 
-                                    password: password.text
-                                  ).then((value) {
-                                    Navigator.pushNamed(context, HomePage.routeName );
-                                  }).onError((error, stackTrace) {
-                                    print("Error ${error.toString()}");
-                                  });
-                                  if(_value){
-                                    sharedPreferences = await SharedPreferences.getInstance();
-                                    sharedPreferences.setString("username", username.text);
-                                    sharedPreferences.setString("password", password.text);
-                                    sharedPreferences.setBool("check",_value);
-                                  }else{
-                                    sharedPreferences.remove('check');
-                                  }
-                                  //Navigator.pushNamed(context, HomePage.routeName);
-                                },
-                                style:ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                  backgroundColor: Colors.blueAccent,
-                                ),                                
-                                child: const Text("Continue", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
-                              ),
+                            child: const Text(
+                              "Log In",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
-                        const SizedBox(height: 5,),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Row(
@@ -200,78 +238,92 @@ class  signInFormState extends State <signInForm> {
                                 width: 40,
                                 padding: const EdgeInsets.all(10),
                                 decoration: const BoxDecoration(
-                                  color: Color(0xFFF5F6F9),
-                                  shape: BoxShape.circle
-                                ),
-                                child: SvgPicture.asset("assets/icons/icons8-facebook.svg"),
+                                    color: Color(0xFFF5F6F9),
+                                    shape: BoxShape.circle),
+                                child: SvgPicture.asset(
+                                    "assets/icons/icons8-facebook.svg"),
                               ),
                               Container(
                                 height: 40,
                                 width: 40,
-                                margin: const EdgeInsets.only(left: 10, right: 10),
-                                padding: const EdgeInsets.all(10),
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFF5F6F9),
-                                  shape: BoxShape.circle
-                                ),
-                                child: SvgPicture.asset("assets/icons/icons8-google.svg"),
-                              ),
-                              Container(
-                                height: 40,
-                                width: 40,
-                                margin: const EdgeInsets.only(left: 10, right: 10),
+                                margin:
+                                    const EdgeInsets.only(left: 10, right: 10),
                                 padding: const EdgeInsets.all(10),
                                 decoration: const BoxDecoration(
                                     color: Color(0xFFF5F6F9),
-                                    shape: BoxShape.circle
-                                ),
-                                child: SvgPicture.asset("assets/icons/icons8-twitter.svg"),
+                                    shape: BoxShape.circle),
+                                child: SvgPicture.asset(
+                                    "assets/icons/icons8-google.svg"),
+                              ),
+                              Container(
+                                height: 40,
+                                width: 40,
+                                margin:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                padding: const EdgeInsets.all(10),
+                                decoration: const BoxDecoration(
+                                    color: Color(0xFFF5F6F9),
+                                    shape: BoxShape.circle),
+                                child: SvgPicture.asset(
+                                    "assets/icons/icons8-twitter.svg"),
                               )
                             ],
                           ),
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Don't have an account ? ", style: TextStyle(color: Colors.blueAccent, fontSize: 14),),
+                            const Text(
+                              "Don't have an account ? ",
+                              style: TextStyle(
+                                  color: Colors.blueAccent, fontSize: 14),
+                            ),
                             GestureDetector(
-                              onTap:(){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => signUpPage()),
-                                );
-                                //Navigator.pushNamed(context, signUpPage.routeName);
-                                // User user = result;
-                                // username.text = user.username;
-                              },
-                              child: const Text("Sign Up", style: TextStyle(color: Colors.redAccent, fontSize: 14),)
-                            )
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => signUpPage()),
+                                  );
+                                  //Navigator.pushNamed(context, signUpPage.routeName);
+                                  // User user = result;
+                                  // username.text = user.username;
+                                },
+                                child: const Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      color: Colors.redAccent, fontSize: 14),
+                                ))
                           ],
                         )
-                        ]),
-              )
-              ),
+                      ]),
+                )),
           ],
         ),
       ),
     );
   }
-  
+
   void wrongEmailMessage() {
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Text("Incorrect Email"),
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text("Incorrect Email"),
+          );
+        });
   }
 
   void wrongPasswordMessage() {
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Text("Incorrect Password"),
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text("Incorrect Password"),
+          );
+        });
   }
 }

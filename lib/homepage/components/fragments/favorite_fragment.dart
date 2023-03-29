@@ -38,7 +38,7 @@ class ProductItemList  extends StatelessWidget{
               height: 100,
               child: Image.asset(product.image, fit: BoxFit.fill,),
             ),
-            SizedBox(width: 5,),
+            const SizedBox(width: 5,),
             Expanded(
               child: SizedBox(
                 height: 100,
@@ -46,8 +46,8 @@ class ProductItemList  extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(product.title),
-                    Expanded(child: Text(product.description, maxLines: 5, overflow: TextOverflow.ellipsis,)
-                  )
+                  //   Expanded(child: Text(product.price as String, maxLines: 5, overflow: TextOverflow.ellipsis,)
+                  // )
                 ],
               )
             )
