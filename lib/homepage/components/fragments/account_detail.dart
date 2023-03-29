@@ -89,11 +89,11 @@ class _AccountDetailState extends State<AccountDetail> {
             )
           ],
         ),
-      ),);;
+      ),);
   }
   TextFormField emailTextFormField() {
     return TextFormField(
-      //controller: email,
+      controller: email,
       decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Enter your email',
@@ -105,7 +105,7 @@ class _AccountDetailState extends State<AccountDetail> {
 
   TextFormField conformTextFormField() {
     return TextFormField(
-      //controller: email,
+      controller: email,
       decoration: const InputDecoration(
           border: OutlineInputBorder(),
           hintText: 'Re-enter your email',

@@ -167,7 +167,11 @@ class  signInFormState extends State <signInForm> {
                                   FirebaseAuth.instance.signInWithEmailAndPassword(
                                     email: username.text, 
                                     password: password.text
-                                  );
+                                  ).then((value) {
+                                    Navigator.pushNamed(context, HomePage.routeName );
+                                  }).onError((error, stackTrace) {
+                                    print("Error ${error.toString()}");
+                                  });
                                   if(_value){
                                     sharedPreferences = await SharedPreferences.getInstance();
                                     sharedPreferences.setString("username", username.text);
@@ -176,7 +180,7 @@ class  signInFormState extends State <signInForm> {
                                   }else{
                                     sharedPreferences.remove('check');
                                   }
-                                  Navigator.pushNamed(context, HomePage.routeName);
+                                  //Navigator.pushNamed(context, HomePage.routeName);
                                 },
                                 style:ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -238,7 +242,7 @@ class  signInFormState extends State <signInForm> {
                                   MaterialPageRoute(
                                       builder: (context) => signUpPage()),
                                 );
-                                Navigator.pushNamed(context, signUpPage.routeName);
+                                //Navigator.pushNamed(context, signUpPage.routeName);
                                 // User user = result;
                                 // username.text = user.username;
                               },

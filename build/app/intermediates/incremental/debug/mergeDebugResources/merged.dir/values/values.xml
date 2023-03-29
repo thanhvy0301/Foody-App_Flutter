@@ -124,16 +124,16 @@
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="copy_toast_msg">Link copied to clipboard</string>
-    <string name="default_web_client_id" translatable="false">118079717298-kfmiokclf1n1366t2au27unb5scjt2tr.apps.googleusercontent.com</string>
+    <string name="default_web_client_id" translatable="false">347061031119-bkcghq3cbc1s8p5fq5mtb3htpuk232dh.apps.googleusercontent.com</string>
     <string name="fallback_menu_item_copy_link">Copy link</string>
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
-    <string name="gcm_defaultSenderId" translatable="false">118079717298</string>
-    <string name="google_api_key" translatable="false">AIzaSyCEPL6wzM-tJkzb4HLV9ymv7-8eUOvElpU</string>
-    <string name="google_app_id" translatable="false">1:118079717298:android:fb938a531314cef398eeab</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCEPL6wzM-tJkzb4HLV9ymv7-8eUOvElpU</string>
-    <string name="google_storage_bucket" translatable="false">foodappflutter-ddca7.appspot.com</string>
-    <string name="project_id" translatable="false">foodappflutter-ddca7</string>
+    <string name="gcm_defaultSenderId" translatable="false">347061031119</string>
+    <string name="google_api_key" translatable="false">AIzaSyAAm5RdfxlXU9OkX5CabD3ccIktTbLxl1A</string>
+    <string name="google_app_id" translatable="false">1:347061031119:android:20d0620e8c8723e42127ba</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAAm5RdfxlXU9OkX5CabD3ccIktTbLxl1A</string>
+    <string name="google_storage_bucket" translatable="false">flutterfoodapp-67723.appspot.com</string>
+    <string name="project_id" translatable="false">flutterfoodapp-67723</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         

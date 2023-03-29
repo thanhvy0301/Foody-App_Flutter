@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import "package:flutter/cupertino.dart";
-import 'package:test_app/user/user.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:quiver/strings.dart';
-
-import '../../model/utilities.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:test_app/signIn/components/signIn_form.dart';
 
 class SignUpForm extends StatefulWidget{
   @override
@@ -13,9 +12,9 @@ class SignUpForm extends StatefulWidget{
 }
 class _SignUpFormState extends State<SignUpForm> {
   var email = TextEditingController();
-  final password = TextEditingController();
-  final conform = TextEditingController();
-
+  var password = TextEditingController();
+  var conform = TextEditingController();
+  
   final _formKey = GlobalKey<FormState>();
   final _passKey = GlobalKey<FormState>();
 
@@ -27,6 +26,7 @@ class _SignUpFormState extends State<SignUpForm> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            
             SizedBox(height: 30,),
             emailTextFormField(),
             SizedBox(height: 30,),
@@ -34,6 +34,7 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 30,),
             conformTextFormField(),
             SizedBox(height: 30,),
+            
             SizedBox(
               height: 50,
               width: MediaQuery
@@ -42,10 +43,19 @@ class _SignUpFormState extends State<SignUpForm> {
                   .width,
               child: ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pop(context,
-                        User(username: email.text, password: conform.text));
-                  }
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: email.text, 
+                    password: password.text).then((value){
+                      print("Create new account");
+                      Navigator.push(context, MaterialPageRoute(builder:(context) => const signInForm()));
+                    }).onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
+                    
+                  // if (_formKey.currentState!.validate()) {
+                    
+                  //       //User(username: email.text, password: conform.text));
+                  // }
                 },
                 // side: RoundedRectangleBorder(
                 //     borderRadius: BorderRadius.circular(10)),

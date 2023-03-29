@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "118079717298",
-    "project_id": "foodappflutter-ddca7",
-    "storage_bucket": "foodappflutter-ddca7.appspot.com"
+    "project_number": "347061031119",
+    "project_id": "flutterfoodapp-67723",
+    "storage_bucket": "flutterfoodapp-67723.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:118079717298:android:fb938a531314cef398eeab",
+        "mobilesdk_app_id": "1:347061031119:android:20d0620e8c8723e42127ba",
         "android_client_info": {
           "package_name": "com.example.test_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "118079717298-kfmiokclf1n1366t2au27unb5scjt2tr.apps.googleusercontent.com",
+          "client_id": "347061031119-bkcghq3cbc1s8p5fq5mtb3htpuk232dh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCEPL6wzM-tJkzb4HLV9ymv7-8eUOvElpU"
+          "current_key": "AIzaSyAAm5RdfxlXU9OkX5CabD3ccIktTbLxl1A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "118079717298-kfmiokclf1n1366t2au27unb5scjt2tr.apps.googleusercontent.com",
+              "client_id": "347061031119-bkcghq3cbc1s8p5fq5mtb3htpuk232dh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

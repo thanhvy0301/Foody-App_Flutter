@@ -128,6 +128,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_signin_button",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_signin_button-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.0.4",
       "packageUri": "lib/",
@@ -148,6 +154,12 @@
     {
       "name": "fluttertoast",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/fluttertoast-8.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-9.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -458,7 +470,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-03-24T18:30:02.919112Z",
+  "generated": "2023-03-29T04:17:14.543257Z",
   "generator": "pub",
   "generatorVersion": "2.19.3"
 }
