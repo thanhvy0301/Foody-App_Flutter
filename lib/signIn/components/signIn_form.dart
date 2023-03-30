@@ -179,8 +179,8 @@ class signInFormState extends State<signInForm> {
                               }
                               FirebaseAuth.instance
                                   .signInWithEmailAndPassword(
-                                      email: username.text,
-                                      password: password.text)
+                                      email: username.text.trim(),
+                                      password: password.text.trim())
                                   .then((value) {
                                 Navigator.pushNamed(
                                     context, HomePage.routeName);
@@ -201,9 +201,9 @@ class signInFormState extends State<signInForm> {
                                 sharedPreferences =
                                     await SharedPreferences.getInstance();
                                 sharedPreferences.setString(
-                                    "username", username.text);
+                                    "username", username.text.trim());
                                 sharedPreferences.setString(
-                                    "password", password.text);
+                                    "password", password.text.trim());
                                 sharedPreferences.setBool("check", _value);
                               } else {
                                 sharedPreferences.remove('check');

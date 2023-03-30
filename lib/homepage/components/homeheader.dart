@@ -12,24 +12,29 @@ import '../../cart/cartpage.dart';
 
 class HomeHeader extends StatelessWidget {
   late Cart cart;
-
+  var custext = Text("Food App");
   get cartItem => null;
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   appBar: AppBar(actions: [IconButton(onPressed: (){
-    //     showSearch(
-    //       context: context,
-    //       delegate: MySearchDelegate()
-    //       );
-    //   }, icon: const Icon(Icons.search_off_outlined))]),
-    // );
-    //var searchController2 = searchController;
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text("Food App"),
+        _SearchAndCart(context)
+      ],
+    );
+  }
+
+  Widget _SearchAndCart(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _SearchBar(context),
-        _SearchBar(context),
+        _Cart(context),
       ],
+      //
     );
   }
 
@@ -45,12 +50,6 @@ class HomeHeader extends StatelessWidget {
           child: const Icon(Icons.search)),
     );
   }
-  // Widget _Search(BuildContext context) {
-  //   return Scaffold(
-     
-  //   );
-    
-  // }
 
   Widget _Cart(BuildContext context) {
     return GestureDetector(
@@ -65,19 +64,19 @@ class HomeHeader extends StatelessWidget {
     );
   }
 }
-  // TextFormField conformTextFormField(context) {
-  //   return TextFormField(
-  //     // controller: conform,
-  //     // obscureText: !_passwordVisible,
-  //     //keyboardType: TextInputType.number,
-  //     decoration: const InputDecoration(
-  //         border: const OutlineInputBorder(),
-  //         hintText: "Re-enter your password",
-  //         floatingLabelBehavior: FloatingLabelBehavior.always,
-          
-  //     ),
-  //   );
-  // }
+// TextFormField conformTextFormField(context) {
+//   return TextFormField(
+//     // controller: conform,
+//     // obscureText: !_passwordVisible,
+//     //keyboardType: TextInputType.number,
+//     decoration: const InputDecoration(
+//         border: const OutlineInputBorder(),
+//         hintText: "Re-enter your password",
+//         floatingLabelBehavior: FloatingLabelBehavior.always,
+
+//     ),
+//   );
+// }
 // class MySearchDelegate extends SearchDelegate {
 //   Products? product;
 //   @override
