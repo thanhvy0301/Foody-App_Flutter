@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:test_app/detail/addtocart.dart';
+import 'package:test_app/cart/components/checkoutScreen.dart';
+//import 'package:test_app/cart/components/confirmOrder.dart';
+import 'package:test_app/cart/components/detailPayment.dart';
 import 'package:test_app/homepage/components/fragments/search.dart';
 import 'package:test_app/homepage/homepage.dart';
 import 'package:test_app/signIn/components/plashPage.dart';
@@ -30,9 +32,12 @@ class MyApp extends StatelessWidget {
         '/signUp': (context)=> signUpPage(),
         '/search_bar':(context) => SearchBar(),
         // '/details':(context) => ProductPage(productItem: null,),
-        '/carts':(context) => const CartPage(),                
+        '/carts':(context) => const CartPage(),  
+        '/detailPayment':(context) =>  detailPayment()  ,
+        '/checkoutScreen':(context) => const  CheckoutScreen(sum: 0,),
+        //'/confirmOrder':(context) => const ConfirmOrder()            
       },
-      home:  plashPage(),
+      home:   HomePage(),
     );
   }
 }

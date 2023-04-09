@@ -1,68 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/cart/components/checkoutScreen.dart';
 
 class CheckOutCart extends StatelessWidget {
-  double sum;
-  CheckOutCart({super.key, required this.sum});
+  final double sum;
+  const CheckOutCart({super.key, required this.sum});
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        _buildSum(),
-        _buildCheckOut(),
-      ],
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [_buildSum(), _buildCheckOut(context)],
     );
   }
-
   Widget _buildSum() {
-    return Expanded(
-      child: SizedBox(
-        height: 50.0,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.blueAccent),
-                borderRadius: BorderRadius.circular(0.0),
-              ),
-            ),
-          ),
-          onPressed: () {},
+    return SizedBox(
+        height: 85,
+        child: Container(
+          alignment: Alignment.center,
           child: Text(
-            'Sum: $sum',
-            style: const TextStyle(
-              fontSize: 14.0,
-              color: Colors.blueAccent,
-            ),
+            "Total: $sum \$",
+            style: const TextStyle(fontSize: 18),
           ),
-        ),
-      ),
-    );
+        ));
   }
-
-  Widget _buildCheckOut() {
-    return Expanded(
-      child: SizedBox(
+  Widget _buildCheckOut(context) {
+    return GestureDetector(
+      child: Container(
+        alignment: Alignment.center,
         height: 50,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.blueAccent),
-                borderRadius: BorderRadius.circular(0.0),
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: Text(
-            'Check out'.toUpperCase(),
-            style: const TextStyle(fontSize: 14.0),
-          ),
+        width: 150,
+        decoration: BoxDecoration(
+            color: Colors.amberAccent, borderRadius: BorderRadius.circular(50)),
+        child: const Text(
+          "Confirm",
+          style: TextStyle(
+              fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
+      onTap: () {
+        //Navigator.pushNamed(context, CheckoutScreen.routeName, arguments: [sum]);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CheckoutScreen(
+                      sum: sum,
+                    )));
+      },
     );
   }
 }

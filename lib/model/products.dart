@@ -22,7 +22,7 @@ const allProducts = [
           "Người Việt Nam uống cà phê như một văn hóa. Một ly cà phê truyền thống đậm chất Việt Nam sẽ luôn luôn sẵn sàng cho bạn tại Circle K vào bất cứ lúc nào trong ngày."
           "Hệ thống Circle K phục vụ 2 loại: Cà Phê Đen & Cà Phê Sữa - nóng và đá. Bạn có thể uống tại chỗ hoặc mang đi.",
       image: "assets/foods/CircleK/bacxiuCircleK.jpg",
-      price: 8.0),
+      price: 18.0),
   Products(
       id: 2,
       title: "Cà phê đen đá",

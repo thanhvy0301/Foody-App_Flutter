@@ -14,11 +14,6 @@ class AddProductToCart extends StatefulWidget {
   @override
   State<AddProductToCart> createState() => _AddProductToCartState();
 }
-
-//   @override
-//   _AddProductToCartState createState()  => _AddProductToCartState();
-// }
-
 class _AddProductToCartState extends State<AddProductToCart> {
   @override
   void initState() {
@@ -26,19 +21,25 @@ class _AddProductToCartState extends State<AddProductToCart> {
   }
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50.0,
-      width: MediaQuery.of(context).size.width,
-      child: _buildAddToCard(),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,      
+      children: [
+        SizedBox(
+          height: 70.0,          
+          width: 70,
+          child: _buildAddToCard(),
+        ),
+      ],
     );
   }
   Widget _buildAddToCard() {
     return ElevatedButton(
-      style: ButtonStyle(
+    
+      style: ButtonStyle(        
         backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(50.0),
           ),
         ),
       ),
@@ -47,7 +48,7 @@ class _AddProductToCartState extends State<AddProductToCart> {
         cart.addProductToCart(widget.product);
         // ignore: avoid_print
         print(cart.getCart().length.toString());
-        Fluttertoast.showToast(
+          Fluttertoast.showToast(
           msg: 'Add to cart',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
@@ -57,14 +58,12 @@ class _AddProductToCartState extends State<AddProductToCart> {
           fontSize: 16.0,
         );
       },
-      child: const Text(
-        'Add to cart',
-        style: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
+      // child: Container(
+
+      // ),
+      child: Container(
+        alignment: Alignment.center,
+        child: const Icon(Icons.shopping_cart_outlined)),
     );
   }
 

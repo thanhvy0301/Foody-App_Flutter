@@ -22,14 +22,18 @@ class _SearchBar extends State<SearchBar> {
         body: Column(
           children: <Widget>[
             Container(
+              height: 50,
               margin: const EdgeInsets.all(16.0),
               child: TextField(
+              
                 //controller: controller,
                 decoration: InputDecoration(
-                    prefix: const Icon(Icons.search),
+
+                    //prefix: const Icon(Icons.search),
+                    
                     hintText: "eg: Bread",
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(20.0),
                         borderSide:
                             const BorderSide(color: Colors.blueAccent))),
                 onChanged: searchProduct,

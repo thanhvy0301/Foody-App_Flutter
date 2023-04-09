@@ -110,6 +110,7 @@ class signInFormState extends State<signInForm> {
                     ),
                     Text(
                       "Sign in with your email and password \n or continue with social media",
+                      
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.blueAccent),
                     )

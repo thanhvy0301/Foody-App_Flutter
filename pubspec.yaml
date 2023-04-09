@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^4.5.0
+  badges: ^3.0.3 
   http: ^0.13.5
   flutter_svg: ^2.0.2
   fluttertoast: ^8.2.1

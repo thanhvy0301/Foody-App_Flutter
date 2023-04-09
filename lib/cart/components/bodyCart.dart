@@ -60,7 +60,7 @@ class _BodyCartState extends State<BodyCart> {
                   });
                 },
               ),
-              const Divider(),
+              //const Divider(),
             ],
           );
         },
@@ -76,7 +76,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xfff5f5f5),
+      color: Colors.white,
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [

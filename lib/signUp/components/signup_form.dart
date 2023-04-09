@@ -86,7 +86,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     width: 40,
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
-                      color: Color(0xFFF5F6F9),
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset("assets/icons/icons8-facebook.svg"),
@@ -96,7 +96,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     width: 40,
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
-                      color: Color(0xFFF5F6F9),
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset("assets/icons/icons8-google.svg"),
@@ -106,7 +106,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     width: 40,
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
-                      color: Color(0xFFF5F6F9),
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset("assets/icons/icons8-twitter.svg"),
