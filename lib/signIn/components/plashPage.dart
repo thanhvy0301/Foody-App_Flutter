@@ -47,21 +47,22 @@ class plashPage extends StatelessWidget {
           decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              CircularProgressIndicator(
+            children:  [
+               Text(
+                "Loading...",
+                style: TextStyle(
+                    color: Colors.orange.shade400,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+              const CircularProgressIndicator(
                 backgroundColor: Colors.grey,
                 strokeWidth: 5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Text(
-                "Loading...",
-                style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              )
+             
             ],
           ),
         ),

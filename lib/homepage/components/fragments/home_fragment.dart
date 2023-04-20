@@ -8,9 +8,11 @@ class HomeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: ListView(
+    return Expanded(
+      child: ListView(
+      
       children:  [
-        CategoriesStore(),
+        const CategoriesStore(),
         ProductPopular()
 
       ],

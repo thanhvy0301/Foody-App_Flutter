@@ -11,6 +11,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange.shade400,
         leading: GestureDetector(
           onTap: (){
             Navigator.pop(context);
@@ -23,7 +24,3 @@ class ProductPage extends StatelessWidget {
     );
   }
 }
-// class ProductDetailArguments{
-//   final Products product;
-//   ProductDetailArguments({required this.product});
-// }

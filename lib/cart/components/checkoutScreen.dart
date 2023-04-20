@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_app/cart/components/OrderSummary.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:test_app/model/carts.dart';
+import 'package:test_app/model/order.dart';
+
+import '../../homepage/homepage.dart';
+import '../../model/products.dart';
 
 class CheckoutScreen extends StatelessWidget {
   final double sum;
   static const String routeName = '/checkoutScreen';
 
-  const CheckoutScreen({super.key, required this.sum});
+  CheckoutScreen({super.key, required this.sum});
+
   @override
   Widget build(BuildContext context) {
+    //late Cart cartItems;
+
     //final TextEditingController emailController = TextEditingController();
     final TextEditingController nameController = TextEditingController();
     final TextEditingController phoneController = TextEditingController();
     final TextEditingController addressController = TextEditingController();
+    void _clearCart(BuildContext context) {
+      nameController.clear();
+      phoneController.clear();
+      addressController.clear();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Checkout'),
+        backgroundColor: Colors.orange.shade400,
       ),
       body: Column(
+
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -25,18 +43,17 @@ class CheckoutScreen extends StatelessWidget {
             width: 260,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: Colors.amber,
+              color: Colors.orange.shade400,
             ),
             margin: const EdgeInsets.only(top: 20),
             height: 35,
             child: const Text(
               "CUSTOMER INFORMATION",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  //fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
-            
           ),
           _buildTextFormField(
             nameController,
@@ -50,15 +67,15 @@ class CheckoutScreen extends StatelessWidget {
             width: 260,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: Colors.amber,
+              color: Colors.orange.shade400,
             ),
             margin: const EdgeInsets.only(top: 30),
             height: 35,
             child: const Text(
-              "CUSTOMER INFORMATION",
+              "ORDER INFORMATION",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  //fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
           ),
@@ -71,25 +88,63 @@ class CheckoutScreen extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      "Total: $sum \$",
+                      "Total: \$$sum",
                       style: const TextStyle(fontSize: 18),
                     ),
                   )),
-              Container(
-                alignment: Alignment.center,
-                height: 50,
-                width: 150,
-                decoration: BoxDecoration(
-                    color: Colors.amberAccent,
-                    borderRadius: BorderRadius.circular(50)),
-                child: const Text(
-                  "Confirm",
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+              GestureDetector(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: 150,
+                  decoration: BoxDecoration(
+                      color: Colors.orange.shade400,
+                      borderRadius: BorderRadius.circular(50)),
+                  child: const Text(
+                    "CONFIRM",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+                onTap: () {
+                  DatabaseReference databaseRef =
+                      FirebaseDatabase.instance.ref();
+                  // Get the order information from the text controllers
+                  String name = nameController.text;
+                  String phone = phoneController.text;
+                  String address = addressController.text;
+                  String total = sum.toString();
+                  databaseRef.child('orders').push().set({
+                    'name': name,
+                    'phone': phone,
+                    'address': address,
+                    'total': total,
+                  }).then((value) {
+                    _clearCart(context);
+                    Navigator.pushNamed(context, HomePage.routeName);
+                    // Display a success message
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Success'),
+                          content: const Text('Your order has been placed.'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  });
+                },
+              )
             ],
           )
         ],

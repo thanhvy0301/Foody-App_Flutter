@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:test_app/detail/productpage.dart';
 import 'package:test_app/model/products.dart';
 import 'package:test_app/model/utilities.dart';
-import 'package:test_app/detail/addtocart.dart';
 
 class ProductPopular extends StatelessWidget {
   ProductPopular({Key? key}) : super(key: key);
@@ -13,60 +10,59 @@ class ProductPopular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var productsAPI = Utilities().getProducts();
     return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Column(mainAxisSize: MainAxisSize.max, children: [
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
         Row(
           children: [
             Container(
-              margin: EdgeInsets.all(10),
-              child: const Expanded(
+              margin: const EdgeInsets.all(10),
+              child:  Expanded(
                   child: Text(
                 'Popular Products ',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent),
+                    color: Colors.orange.shade400),
               )),
             ),
-            // const Text('See more', style: TextStyle(
-            //   fontSize: 16,
-            //   color: Colors.blue
-            // ),)
           ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        GridView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            primary: false,
+            itemCount: products.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.6,
+            ),
+            itemBuilder: (context, index) {
+              return ProductItem(
+                product: products[index],
+              );
+            }),
         Container(
-          child: GridView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              primary: false,
-              itemCount: products.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.7,
+          margin: const EdgeInsets.only(top: 20),
+          child: SizedBox(
+            width: 80,
+            height: 30,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.amber, borderRadius: BorderRadius.circular(50)),
+              alignment: Alignment.center,
+              child: const SizedBox(
+                //height: 100,
+                child: Text(
+                  'See more',
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              itemBuilder: (context, index) {
-                return ProductItem(
-                  product: products[index],
-                );
-              }),
-        ),
-        SizedBox(
-          width: 80,
-          height: 25,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(50)),
-            alignment: Alignment.center,
-            child: const Text(
-              'See more',
-              style: TextStyle(fontSize: 12, color: Colors.white),
             ),
           ),
         )
@@ -91,29 +87,43 @@ class ProductItem extends StatelessWidget {
                 builder: (context) => ProductPage(productItem: product)));
       },
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Image.asset(
-            product.image,
-            fit: BoxFit.fill,
-          ),
-          Row(
-            children: [
-              Expanded(child: Text(product.title)),
-              Container(
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(2),
-                    color: const Color.fromARGB(255, 255, 255, 255)),
-                child: Container(
-                  child: Text(
-                    product.price.toString(),
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 177, 8, 8),
-                        fontWeight: FontWeight.bold),
-                  ),
+          Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color:
+                      const Color.fromARGB(255, 192, 192, 192).withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                  offset: const Offset(0, 3),
                 ),
+              ], borderRadius: BorderRadius.circular(20)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  product.image,
+                ),
+              )),
+          Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                width: 120,
+                child: Text(
+                  product.title,
+                  style: const TextStyle(color: Color.fromARGB(255, 70, 70, 70), fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5),
+                child: Text(product.price.toString(),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.red.shade900,
+                        fontWeight: FontWeight.bold)),
               )
             ],
           )
@@ -121,6 +131,4 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
-
-  ProductDetailsArguments({required Products product}) {}
 }

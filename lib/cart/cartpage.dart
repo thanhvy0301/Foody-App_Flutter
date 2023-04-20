@@ -5,9 +5,6 @@ import 'package:test_app/model/carts.dart';
 class CartPage extends StatelessWidget {  
   const CartPage({Key? key}) : super(key: key);
   static String routeName ="/carts";  
-  //final Cart cartItem ;
-  // const CartPage({Key? key, required this.cartItem}) : super(key: key);
-  
   get product => null;
 
   @override
@@ -15,6 +12,7 @@ class CartPage extends StatelessWidget {
     //var products;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange.shade400,
         leading: GestureDetector(
           onTap: (){
             Navigator.pop(context);

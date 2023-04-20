@@ -9,8 +9,8 @@ class MenuHeader extends StatelessWidget{
       width: MediaQuery.of(context).size.width,
       height: 50,
       alignment: Alignment.centerLeft,
-      decoration: const BoxDecoration(
-        color: Colors.blueAccent
+      decoration:  BoxDecoration(
+        color: Colors.orange.shade400
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

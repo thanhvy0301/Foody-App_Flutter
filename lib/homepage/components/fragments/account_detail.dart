@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 class AccountDetail extends StatefulWidget {
   const AccountDetail({Key? key}) : super(key: key);
 
@@ -19,37 +18,48 @@ class _AccountDetailState extends State<AccountDetail> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             emailTextFormField(),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             passwordTextFormField(),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             conformTextFormField(),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             SizedBox(
               height: 50,
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context, email.text);
                 },
                 // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                // color: Colors.blueAccent,
-                child: const Text('Continue', style: TextStyle(fontSize: 18,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange.shade400, // Thay đổi màu nền của nút
+                ),
+                child: const Text(
+                  'Continue',
+                  style: TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: Colors
+                        .white, // Cập nhật màu chữ cho độ tương phản tốt hơn
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -89,8 +99,10 @@ class _AccountDetailState extends State<AccountDetail> {
             )
           ],
         ),
-      ),);
+      ),
+    );
   }
+
   TextFormField emailTextFormField() {
     return TextFormField(
       controller: email,
@@ -98,8 +110,7 @@ class _AccountDetailState extends State<AccountDetail> {
           border: OutlineInputBorder(),
           hintText: 'Enter your email',
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(Icons.email_outlined)
-      ),
+          suffixIcon: Icon(Icons.email_outlined)),
     );
   }
 
@@ -110,8 +121,7 @@ class _AccountDetailState extends State<AccountDetail> {
           border: OutlineInputBorder(),
           hintText: 'Re-enter your email',
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(Icons.lock_outline)
-      ),
+          suffixIcon: Icon(Icons.lock_outline)),
     );
   }
 
@@ -122,9 +132,7 @@ class _AccountDetailState extends State<AccountDetail> {
           border: OutlineInputBorder(),
           hintText: 'Enter your password',
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(Icons.lock_outline)
-      ),
+          suffixIcon: Icon(Icons.lock_outline)),
     );
   }
 }
-

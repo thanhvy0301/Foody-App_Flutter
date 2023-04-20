@@ -14,13 +14,13 @@ class Categories {
       ),
       Categories(
           id: 2,
-          title: "CircleK",
-          image: "assets/images/ic_circlek.png"
+          title: "Starbucks",
+          image: "assets/images/starbucks.png"
       ),
       Categories(
           id: 3,
-          title: "MiniStop",
-          image: "assets/images/ic_ministop.png"
+          title: "Phúc Long",
+          image: "assets/images/phuclong.jpg"
       ),
       Categories(
           id: 4,

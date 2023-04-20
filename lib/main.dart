@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_app/cart/components/checkoutScreen.dart';
 //import 'package:test_app/cart/components/confirmOrder.dart';
 import 'package:test_app/cart/components/detailPayment.dart';
@@ -23,7 +24,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    // return MultiProvider(providers: [
+    //   ChangeNotifierProvider.value(value: Orders())
+    // ]);
+   return MaterialApp(
+      
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/splash':(context) => const plashPage(),
@@ -34,10 +39,12 @@ class MyApp extends StatelessWidget {
         // '/details':(context) => ProductPage(productItem: null,),
         '/carts':(context) => const CartPage(),  
         '/detailPayment':(context) =>  detailPayment()  ,
-        '/checkoutScreen':(context) => const  CheckoutScreen(sum: 0,),
+        '/checkoutScreen':(context) =>  CheckoutScreen(sum: 0,),
         //'/confirmOrder':(context) => const ConfirmOrder()            
       },
-      home:   HomePage(),
+      
+      
+      home: HomePage(),
     );
   }
 }

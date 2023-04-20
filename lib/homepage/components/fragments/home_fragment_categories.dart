@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:test_app/model/categories.dart';
 
 class CategoriesStore extends StatelessWidget {
@@ -12,26 +9,27 @@ class CategoriesStore extends StatelessWidget {
     final categories = Categories.init();
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
             Row(
-              children:  [
+              children: [
                 Container(
-                  margin: EdgeInsets.all(10),
-                  child: const Expanded(                  
-                      child: Text(
-                    'Popular Brands',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent),
-                  ),),
-                ),                                
-              ],              
+                  margin: const EdgeInsets.all(10),
+                  child:  Expanded(
+                    child: Text(
+                      'Popular Brands',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange.shade400),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 150,
               child: ListView.builder(
@@ -39,7 +37,7 @@ class CategoriesStore extends StatelessWidget {
                 //doi lai thanh length
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
-                  return CategoriesItem(category: categories[index]);
+                  return CategoriesItem(category: categories[index],);
                 },
               ),
             )
@@ -52,16 +50,22 @@ class CategoriesStore extends StatelessWidget {
 
 class CategoriesItem extends StatelessWidget {
   Categories category;
+  //List<Products> products = star;
   // CategoriesItem({super.key, required this.category});
   CategoriesItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      height: 150,
-      padding: const EdgeInsets.all(5),
-      child: (Image.asset(category.image)),
+    return GestureDetector(
+      child: Container(
+        width: 150,
+        height: 150,
+        padding: const EdgeInsets.all(5),
+        child: (Image.asset(category.image)),
+      ),
+      onTap: () {
+        
+      },
     );
   }
 }

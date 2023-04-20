@@ -8,6 +8,7 @@ class signUpPage extends StatelessWidget{
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.orange.shade400,
         leading: IconButton(
           color: Colors.white,
           icon: const Icon(Icons.arrow_back_ios),
@@ -18,7 +19,7 @@ class signUpPage extends StatelessWidget{
         centerTitle: true,
         title: const Text("Sign Up", style: TextStyle(color: Colors.white),),
       ),
-      body: BodySignUp(),
+      body:const BodySignUp(),
     );
   }
 }

@@ -21,6 +21,8 @@ class Utilities {
     }
     return <Products>[];
   }
+  
+  static List<Products> favoriteProducts = [];
 
   Products _fromJson(Map<String, dynamic> item) {
     return Products(

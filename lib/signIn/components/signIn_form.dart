@@ -100,19 +100,19 @@ class signInFormState extends State<signInForm> {
                 alignment: Alignment.center,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children:  [
                     Text(
                       "Food Now",
                       style: TextStyle(
                           fontSize: 32,
-                          color: Colors.blueAccent,
+                          color: Colors.orange.shade400,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "Sign in with your email and password \n or continue with social media",
                       
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.blueAccent),
+                      style: TextStyle(color: Colors.orange.shade200),
                     )
                   ],
                 )),
@@ -154,9 +154,9 @@ class signInFormState extends State<signInForm> {
                         ),
                         Row(
                           children: [
-                            const Text(
+                             Text(
                               "Remember me",
-                              style: TextStyle(color: Colors.blueAccent),
+                              style: TextStyle(color: Colors.orange.shade400),
                             ),
                             Checkbox(
                                 value: _value,
@@ -215,7 +215,7 @@ class signInFormState extends State<signInForm> {
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              backgroundColor: Colors.blueAccent,
+                              backgroundColor: Colors.orange.shade400,
                             ),
                             child: const Text(
                               "Log In",
@@ -277,10 +277,10 @@ class signInFormState extends State<signInForm> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                             Text(
                               "Don't have an account ? ",
                               style: TextStyle(
-                                  color: Colors.blueAccent, fontSize: 14),
+                                  color: Colors.orange.shade400, fontSize: 14),
                             ),
                             GestureDetector(
                                 onTap: () {

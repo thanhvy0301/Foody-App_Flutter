@@ -12,7 +12,7 @@ import '../../cart/cartpage.dart';
 
 class HomeHeader extends StatelessWidget {
   late Cart cart;
-  var custext = Text("Food App");
+  var custext = const Text("Food App");
   get cartItem => null;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomeHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text("Food App"),
+        const Text("Food App"),
         _SearchAndCart(context)
       ],
     );

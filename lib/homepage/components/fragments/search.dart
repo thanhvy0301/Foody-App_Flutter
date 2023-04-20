@@ -18,6 +18,7 @@ class _SearchBar extends State<SearchBar> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text("Search product"),
+          backgroundColor: Colors.orange.shade400,
         ),
         body: Column(
           children: <Widget>[
@@ -35,7 +36,7 @@ class _SearchBar extends State<SearchBar> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide:
-                            const BorderSide(color: Colors.blueAccent))),
+                             BorderSide(color: Colors.orange.shade400))),
                 onChanged: searchProduct,
               ),
             ),

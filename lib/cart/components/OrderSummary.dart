@@ -11,7 +11,7 @@ class OrderSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Products>? cattails = Cart().getCart();
-    double sum = 0.0;
+    double sum = 0.000;
     for (var product in cattails) {
       sum += product.price;
     }

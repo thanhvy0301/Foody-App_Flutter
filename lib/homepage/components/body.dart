@@ -20,6 +20,7 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     List<Widget> screen = [
+      
       HomeDetail(),
       FavoriteDetail(Utilities.data),
       NotificationDetail(),
@@ -27,9 +28,10 @@ class _BodyState extends State<Body> {
     ];
     return Scaffold(
       appBar: AppBar(
-        
+        backgroundColor: Colors.orange.shade400,
         automaticallyImplyLeading: false,
         title: flag ? HomeHeader(): MenuHeader(),
+        
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -37,6 +39,7 @@ class _BodyState extends State<Body> {
         onTap: (index){
           setState(() {
             selectIndex = index;
+            
             if(selectIndex !=3){
               flag = true;
             }
@@ -45,22 +48,30 @@ class _BodyState extends State<Body> {
             }
           });
         },
-        items: const[
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite),label: 'Favorite'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications),label: 'Notifications'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle),label: 'Account'),
+        items:  [
+          BottomNavigationBarItem(icon: Icon(Icons.home, color: Colors.orange.shade400,),label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite,color: Colors.orange.shade400),label: 'Favorite'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications,color: Colors.orange.shade400),label: 'Notifications'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle,color: Colors.orange.shade400),label: 'Account'),
         ],
+        selectedFontSize: 15,
+        selectedItemColor: Colors.grey.shade600,
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold)
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 10,),
-            screen[selectIndex]
-          ],
+        
+        child: Container(
+          decoration: BoxDecoration(),
+          child: Column(
+            
+            children: [
+              
+              screen[selectIndex]
+            ],
+          ),
         ),
       ),
     );
-    return const Placeholder();
+    
   }
 }
