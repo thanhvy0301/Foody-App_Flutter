@@ -33,10 +33,6 @@ class plashPage extends StatelessWidget {
       //Navigator.push(context, signInPage.routeName)
       Navigator.pushNamedAndRemoveUntil(
           context, signInPage.routeName, (Route<dynamic> route) => false
-          // FirebaseAuth.instance.currentUser != null
-          //     ? HomePage.routeName
-          //     : signInPage.routeName,
-          // (Route<dynamic> route) => false);
           );
     });
     return Scaffold(
@@ -48,16 +44,17 @@ class plashPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-               Text(
+               const CircularProgressIndicator(
+                backgroundColor: Colors.grey,
+                strokeWidth: 5,
+              ),
+              SizedBox(height: 10,),
+              Text(
                 "Loading...",
                 style: TextStyle(
                     color: Colors.orange.shade400,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
-              ),
-              const CircularProgressIndicator(
-                backgroundColor: Colors.grey,
-                strokeWidth: 5,
               ),
               const SizedBox(
                 height: 5,

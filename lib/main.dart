@@ -20,13 +20,8 @@ void main()  async{
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // return MultiProvider(providers: [
-    //   ChangeNotifierProvider.value(value: Orders())
-    // ]);
    return MaterialApp(
       
       initialRoute: '/',
@@ -36,15 +31,13 @@ class MyApp extends StatelessWidget {
         '/home_screen': (context)=> HomePage(),
         '/signUp': (context)=> signUpPage(),
         '/search_bar':(context) => SearchBar(),
-        // '/details':(context) => ProductPage(productItem: null,),
         '/carts':(context) => const CartPage(),  
-        '/detailPayment':(context) =>  detailPayment()  ,
-        '/checkoutScreen':(context) =>  CheckoutScreen(sum: 0,),
-        //'/confirmOrder':(context) => const ConfirmOrder()            
+        //'/detailPayment':(context) =>  detailPayment()  ,
+        '/checkoutScreen':(context) =>  CheckoutScreen(sum: 0,),                
       },
       
       
-      home: HomePage(),
+      home: const plashPage(),
     );
   }
 }

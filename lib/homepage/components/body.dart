@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     List<Widget> screen = [
       
-      HomeDetail(),
+      const HomeDetail(),
       FavoriteDetail(Utilities.data),
       NotificationDetail(),
       AccountDetail()
@@ -61,7 +61,9 @@ class _BodyState extends State<Body> {
       body: SafeArea(
         
         child: Container(
-          decoration: BoxDecoration(),
+          decoration: BoxDecoration(
+            color: Colors.white
+          ),
           child: Column(
             
             children: [

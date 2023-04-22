@@ -80,7 +80,7 @@ class _AddProductToCartState extends State<AddProductToCart> {
               gravity: ToastGravity.SNACKBAR,
               timeInSecForIosWeb: 1,
               backgroundColor: Colors.white,
-              textColor: Color.fromARGB(145, 158, 158, 158),
+              textColor: Colors.black,
               fontSize: 16.0,
             );
           },

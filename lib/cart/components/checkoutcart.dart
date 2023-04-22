@@ -18,7 +18,7 @@ class CheckOutCart extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           child: Text(
-            "Total: \$$sum ",
+            "Total: \$ $sum ",
             style: const TextStyle(fontSize: 18),
           ),
         ));
