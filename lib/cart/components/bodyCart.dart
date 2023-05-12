@@ -68,11 +68,17 @@ class _BodyCartState extends State<BodyCart> {
     );
   }
 }
-class CartItem extends StatelessWidget {
+// ignore: must_be_immutable
+class CartItem extends StatefulWidget {
   Products product;
 
   CartItem({super.key, required this.product});
 
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -84,14 +90,14 @@ class CartItem extends StatelessWidget {
             width: 100.0,
             height: 100.0,
             child: Image(
-              image: AssetImage(product.image),
+              image: AssetImage(widget.product.image),
             ),
           ),
           Expanded(
-            child: Text(product.title),
+            child: Text(widget.product.title),
           ),
           Expanded(
-            child: Text(product.price.toString()),
+            child: Text(widget.product.price.toString()),
           ),
           const Icon(Icons.delete_outline),
         ],

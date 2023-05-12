@@ -10,8 +10,6 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBar extends State<SearchBar> {
-  //final controller = TextEditingController();
-  //final Products product;
   List<Products> products = allProducts;
 
   @override
